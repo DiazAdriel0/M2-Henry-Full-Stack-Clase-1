@@ -9,6 +9,8 @@ let span = document.querySelector("#createdBy")
 let nombre = document.createElement("span")
 nombre.innerHTML = " Adriel Díaz"
 span.appendChild(nombre)
+// span.innerHTML += ` Adriel Díaz`
+
 // Crear una clase denominada 'ToDo' cuyo constructor debe recibir un único parámetro del tipo string
 // con el nombre 'description' que será justamente la descripción del ToDo.
 // Agregar dos propiedades a la clase:
@@ -52,9 +54,12 @@ function buildToDo(todo, index) {
   // Tu código acá:
   let toDoShell = document.createElement("div")
   toDoShell.classList.add("toDoShell")
+  //toDoShell.className = "toDoShell"
+  //toDoShell.setAttribute("class", "toDoShell")
   let toDoText = document.createElement("span")
   toDoText.innerHTML = todo.description
-  toDoText.setAttribute("id", `${index}`)
+  toDoText.setAttribute("id", index)
+  //toDoText.id = index
   if(todo.complete){
     toDoText.classList.add("completeText")
   }
@@ -77,6 +82,7 @@ function buildToDos(toDos) {
   return toDos.map(function(element,index) {
     return buildToDo(element,index)
   })
+  //return toDos.map((todo,index) => buildToDo(todo,index))
 }
 
 // La función 'displayToDos' se va a encargar de que se vean los toDo's en pantalla
@@ -111,7 +117,7 @@ function addToDo() {
   let input = document.getElementById("toDoInput")
   let nuevoToDo = new ToDo(input.value)
   toDoItems.push(nuevoToDo)
-  input.innerHTML = ""
+  input.value = ""
   displayToDos()
 }
 
@@ -123,6 +129,7 @@ function addToDo() {
 // Tu código acá:
 let button = document.getElementById("addButton")
 button.addEventListener("click",addToDo)
+//document.getElementById("addButton").addEventListener("click",addToDo)
 // La función completeToDo se va a ejecutar cuando queramos completar un todo
 // [NOTA: Algunas cuestiones a tener en cuenta
 // Todo Event Listener recibe como parámetro el objeto 'event' conteniendo un montón de información que incluye
